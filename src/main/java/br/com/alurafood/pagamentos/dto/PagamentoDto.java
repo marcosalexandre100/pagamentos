@@ -1,55 +1,22 @@
-package br.com.alurafood.pagamentos.model;
+package br.com.alurafood.pagamentos.dto;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import br.com.alurafood.pagamentos.model.Status;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "pagamentos")
-@AllArgsConstructor
-@NoArgsConstructor
-public class Pagamentos {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PagamentoDto {
     private Long id;
-
-    @NotNull
-    @Positive
     private BigDecimal valor;
-
-    @NotBlank
-    @Size(max=100)
     private String nome;
-
-    @NotBlank
-    @Size(max=19)
     private String numero;
-
-    @NotBlank
-    @Size(max=7)
     private String expiracao;
-
-    @NotBlank
-    @Size(min=3, max=3)
     private String codigo;
-
-    @NotNull
-    @Enumerated(EnumType.STRING)
     private Status status;
-
-    @NotNull
-    private Long pedidoId;
-
-    @NotNull
     private Long formaDePagamentoId;
+    private Long pedidoId;
 
     public Long getId() {
         return id;
@@ -107,19 +74,19 @@ public class Pagamentos {
         this.status = status;
     }
 
-    public Long getPedidoId() {
-        return pedidoId;
-    }
-
-    public void setPedidoId(Long pedidoId) {
-        this.pedidoId = pedidoId;
-    }
-
     public Long getFormaDePagamentoId() {
         return formaDePagamentoId;
     }
 
     public void setFormaDePagamentoId(Long formaDePagamentoId) {
         this.formaDePagamentoId = formaDePagamentoId;
+    }
+
+    public Long getPedidoId() {
+        return pedidoId;
+    }
+
+    public void setPedidoId(Long pedidoId) {
+        this.pedidoId = pedidoId;
     }
 }
